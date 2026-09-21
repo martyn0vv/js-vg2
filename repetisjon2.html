@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kontroll structure 2222</title>
+</head>
+<body>
+    
+
+    <h1>del 8</h1>
+
+    <script>
+        for (let i = 0; i <= 10; i++) {
+            console.log(i);
+        }
+    </script>
+
+    <p>Sjekk konsollen for å se resultatet</p>
+
+
+    <h1>del 9</h1>
+
+    
+    <p id="res9"></p>
+    <script>
+        const res9 = document.querySelector("#res9");
+        let teller9 = "";
+        for (let i = 10; i >= 1; i--) {
+            // teller 9 += i + ", "; // for alternativ 2
+            teller9 += i;
+            if (i > 1) {
+                teller9 += ", ";
+            } //alternativ 1
+        }
+        // teller9 = teller9.substring(0, teller9.length - 1); //alternativ 2
+        res9.innerHTML = teller9;
+     </script>
+<h1>del 9,2</h1>
+
+
+
+<h1>del 9,3</h1>
+<script>
+
+    const tall= [8, 3, 12, 1, 5];
+    console.log(tall[0]);
+    console.log(tall[1]);
+    console.log(tall);
+
+    for (let i = 0; i < tall.length; i++) {
+        console.log(tall[i]);
+    }
+let storst = 0;
+for (let i = 0; i < tall.length; i++) {
+    if (tall[i] > storst) {
+        storst = tall[i];
+    }
+}
+console.log("største tall er: " + storst);
+
+</script>
+
+<h1>del 9,7</h1>
+
+<script>
+    const tall = [8, 3, 12, 1, 5];
+
+    for (let i = 0; i < tall.length; i++) {
+        for (let j = 0; j < tall.length; j++) {
+
+            if (tall[i] < tall[j]) {
+                let temp = tall[i];
+                tall[i] = tall[j];
+                tall[j] = temp;
+            }
+
+        }
+    }
+
+    console.log(tall);
+</script>
+<h1>del 10</h1>
+</body>
+</html>

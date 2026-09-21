@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grunnleggende JavaScript – Oppgave 1–14</title>
+</head>
+<body>
+  <section id="oppgave-1">
+    <h2>1. Din første variabel</h2>
+    <p><code>const</code> lagrer et fornavn. Navnet skrives til konsollen.</p>
+    <script>
+      // Oppgave 1
+      const fornavn = "Herman";
+      console.log("Oppgave 1:", fornavn);
+    </script>
+  </section>
+
+  <section id="oppgave-2">
+    <h2>2. Variabler som kan endres</h2>
+    <p>Poengsummen starter på 0 og økes til 1. Vi bruker <code>let</code> fordi verdien endres.</p>
+    <script>
+      // Oppgave 2
+      let poeng = 0;
+      poeng++;
+      console.log("Oppgave 2:", poeng);
+    </script>
+  </section>
+
+  <section id="oppgave-3">
+    <h2>3. Forskjellige datatyper</h2>
+    <p>Se konsollen: hver variabel vises sammen med datatypen fra <code>typeof</code>.</p>
+    <script>
+      // Oppgave 3
+      const navn = "Herman";        // string: tekst
+      const alder = 19;           // number: tall
+      const erElev = true;       // boolean: true eller false
+      let utenVerdi;             // undefined: ingen verdi er tildelt
+
+      console.log("Oppgave 3 – navn:", navn, typeof navn);
+      console.log("Oppgave 3 – alder:", alder, typeof alder);
+      console.log("Oppgave 3 – erElev:", erElev, typeof erElev);
+      console.log("Oppgave 3 – utenVerdi:", utenVerdi, typeof utenVerdi);
+    </script>
+  </section>
+
+  <section id="oppgave-4">
+    <h2>4. Finn et HTML-element med DOM</h2>
+    <p><code>querySelector()</code> finner meldingen under. Referansen lagres i <code>const melding</code>.</p>
+    <h2 id="melding" aria-live="polite">Ingen melding ennå</h2>
+    <script>
+      // Oppgave 4: # betyr at vi søker etter en id.
+      const melding = document.querySelector("#melding");
+      console.log("Oppgave 4:", melding);
+    </script>
+  </section>
+
+  <section id="oppgave-5">
+    <h2>5. Endre innhold med JavaScript</h2>
+    <p>Meldingen over endres automatisk fra «Ingen melding ennå» til «JavaScript har vært her!» når siden åpnes.</p>
+    <script>
+      // Oppgave 5: Vi bruker referansen fra oppgave 4.
+      melding.textContent = "JavaScript har vært her!";
+    </script>
+  </section>
+
+  <section id="oppgave-6">
+    <h2>6. Lag en trigger</h2>
+    <p><code>onclick</code> kjører <code>visMelding()</code>. Se både konsollen og meldingen over.</p>
+    <button type="button" onclick="visMelding()">Trykk på meg</button>
+    <!-- Oppgave 6 og 7 bruker samme funksjon, definert rett under. -->
+  </section>
+
+  <section id="oppgave-7">
+    <h2>7. La knappen endre nettsiden</h2>
+    <p>Funksjonen er utvidet: ett klikk skriver til konsollen og endrer teksten i <code>h2</code>-elementet.</p>
+    <script>
+      // Oppgave 6–7: Én felles funksjon for knappen over.
+      function visMelding() {
+        console.log("Knappen ble trykket!"); // Oppgave 6
+        melding.textContent = "Du trykket på knappen!"; // Oppgave 7
+      }
+    </script>
+  </section>
+
+  <section id="oppgave-8">
+    <h2>8. Les fra et input-felt</h2>
+    <p>Skriv et navn og få en hilsen. <code>.value</code> gir teksten fra feltet.</p>
+    <form onsubmit="siHei(); return false;">
+      <label for="navn">Navn
+        <input type="text" id="navn" placeholder="Herman" required>
+      </label>
+      <button type="submit">Si hei</button>
+    </form>
+    <p id="hilsen" aria-live="polite">Hilsenen din kommer her.</p>
+    <script>
+      // Oppgave 8
+      function siHei() {
+        const navnefelt = document.querySelector("#navn");
+        const hilsen = document.querySelector("#hilsen");
+        const skrevetNavn = navnefelt.value.trim();
+
+        if (skrevetNavn === "") {
+          hilsen.textContent = "Skriv inn et navn først.";
+          return;
+        }
+
+        hilsen.textContent = "Hei " + skrevetNavn + "!";
+      }
+    </script>
+  </section>
+
+  <section id="oppgave-9">
+    <h2>9. Funksjon med parameter</h2>
+    <p><code>lagHilsen("Herman")</code> returnerer <strong>Hei Herman!</strong> Resultatet skrives til konsollen.</p>
+    <script>
+      // Oppgave 9–10: alder er en ekstra parameter som brukes i oppgave 10.
+      // Uten et andre argument får alder verdien undefined.
+      function lagHilsen(navn, alder) {
+        if (alder === undefined) {
+          return "Hei " + navn + "!";
+        }
+
+        return "Hei " + navn + "! Du er " + alder + " år gammel.";
+      }
+
+      // navn er en parameter i funksjonen; "Herman" er argumentet i kallet.
+      const tekst = lagHilsen("Herman");
+      console.log(tekst);
+    </script>
+  </section>
+
+  <section id="oppgave-10">
+    <h2>10. Flere parametre</h2>
+    <p>Den samme funksjonen kan også ta imot alder: <code>lagHilsen("Herman", 19)</code>.</p>
+    <form onsubmit="visHilsenMedAlder(); return false;">
+      <label for="hilsen-navn">Navn
+        <input type="text" id="hilsen-navn" placeholder="Herman" required>
+      </label>
+      <label for="hilsen-alder">Alder
+        <input type="number" id="hilsen-alder" placeholder="19" min="0" step="1" required>
+      </label>
+      <button type="submit">Lag hilsen</button>
+    </form>
+    <p id="hilsen-med-alder" aria-live="polite">Hilsenen med alder kommer her.</p>
+    <script>
+      // Oppgave 10
+      console.log(lagHilsen("Herman", 19));
+
+      function visHilsenMedAlder() {
+        const skrevetNavn = document.querySelector("#hilsen-navn").value.trim();
+        // Input gir tekst. Number() gjør alderen om til et tall.
+        const skrevetAlder = Number(document.querySelector("#hilsen-alder").value);
+        const resultat = document.querySelector("#hilsen-med-alder");
+
+        if (skrevetNavn === "") {
+          resultat.textContent = "Skriv inn et navn først.";
+          return;
+        }
+
+        resultat.textContent = lagHilsen(skrevetNavn, skrevetAlder);
+      }
+    </script>
+  </section>
+
+  <section id="oppgave-11">
+    <h2>11. Manipuler CSS med JavaScript</h2>
+    <p>Knappen endrer bakgrunnsfarge, tekstfarge og skriftstørrelse på meldingsboksen.</p>
+    <button type="button" onclick="byttFarge()">Bytt farge</button>
+    <p id="fargemelding">JavaScript kan også endre utseendet mitt.</p>
+    <script>
+      // Oppgave 11: background-color i CSS blir backgroundColor i JavaScript.
+      function byttFarge() {
+        const meldingsboks = document.querySelector("#fargemelding");
+        meldingsboks.style.backgroundColor = "yellow";
+        meldingsboks.style.color = "blue";
+        meldingsboks.style.fontSize = "24px";
+      }
+    </script>
+  </section>
+
+  <section id="oppgave-12">
+    <h2>12. Tell antall klikk</h2>
+    <button type="button" onclick="tellKlikk()">Tell et klikk</button>
+    <p id="klikkresultat" aria-live="polite">Du har trykket 0 ganger.</p>
+    <p><code>let</code> lar oss tildele telleren et nytt tall. Referansen kan være <code>const</code>, siden vi fortsatt bruker det samme HTML-elementet og bare endrer en egenskap.</p>
+    <script>
+      // Oppgave 12
+      let antallKlikk = 0;
+      const klikkresultat = document.querySelector("#klikkresultat");
+
+      function tellKlikk() {
+        antallKlikk++;
+        klikkresultat.textContent = "Du har trykket " + antallKlikk + " ganger.";
+      }
+    </script>
+  </section>
+
+  <section id="oppgave-13">
+    <h2>13. Lag et objekt</h2>
+    <p>Objektet <code>elev</code> samler navn, alder, klasse og elevstatus. Se hele objektet og bare navnet i konsollen.</p>
+    <script>
+      // Oppgave 13
+      const elev = {
+        navn: "Herman",
+        alder: 19,
+        klasse: "2ITA",
+        erElev: true
+      };
+
+      console.log("Oppgave 13 – hele objektet:", elev);
+      console.log("Oppgave 13 – navn:", elev.navn);
+    </script>
+  </section>
+
+  <section id="oppgave-14">
+    <h2>14. Gi objektet en metode</h2>
+    <p><code>elev.presenter()</code> skriver en presentasjon til konsollen. <code>this</code> viser her til <code>elev</code>.</p>
+    <script>
+      // Oppgave 14: Vi legger en metode til det samme objektet.
+      elev.presenter = function () {
+        console.log("Jeg heter " + this.navn + " og går i " + this.klasse + ".");
+      };
+
+      elev.presenter();
+    </script>
+  </section>
+
+</body>
+</html>

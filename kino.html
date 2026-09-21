@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kino – sjekk adgang</title>
+</head>
+<body>
+    <h1>Sjekk adgang til kino</h1>
+
+    <form onsubmit="sjekkAdgang(); return false;">
+        <label for="alder">Alder:</label>
+        <input type="number" id="alder" min="0" step="1" required>
+        <br>
+
+        <input type="checkbox" id="foresatt">
+        <label for="foresatt">Foresatt er med</label>
+        <br>
+
+        <button type="submit">Sjekk adgang</button>
+    </form>
+
+    <p id="resultat" aria-live="polite"></p>
+
+    <script>
+        function sjekkAdgang() {
+            const alder = Number(document.querySelector("#alder").value);
+            const foresatt = document.querySelector("#foresatt").checked;
+            const resultat = document.querySelector("#resultat");
+
+            if (alder >= 15) {
+                resultat.textContent = "Du kommer inn";
+            } else if (alder >= 12 && alder <= 14 && foresatt) {
+                resultat.textContent = "Du kommer inn med foresatt";
+            } else {
+                resultat.textContent = "Du kommer ikke inn";
+            }
+        }
+    </script>
+</body>
+</html>

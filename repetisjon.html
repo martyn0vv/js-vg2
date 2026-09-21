@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> 
+<body>
+
+    <h1>del 1</h1>
+
+    <script>
+        function sjekkAlder1() {
+            const inputFelt = document.querySelector("#alder1");
+            const resultat = document.querySelector("#resultat1");
+            const alder = inputFelt.value;
+
+            console.log(alder);
+
+            if (alder >= 18) {
+                resultat.innerHTML = "Lox";
+                console.log("Lox");
+            }
+            else {
+                resultat.innerHTML = "Lox melkiy";
+                console.log("Lox melkiy");
+            }
+        }
+    </script>
+
+    <input type="text" id="alder1">
+    <button id="sjekk1" onclick="sjekkAlder1()">Sjekk Alder</button>
+
+    <p id="resultat1"></p>
+
+
+    <h1>del 2</h1>
+
+    <script>
+        function sjekkTemp2() {
+            const inputFelt = document.querySelector("#temp2");
+
+            if (inputFelt.value >= 15) {
+                console.log("warm asf");
+            }
+            else {
+                console.log("cold asf");
+            }
+        }
+    </script>
+
+    <input type="text" id="temp2" placeholder="Skriv inn temperatur">
+    <button onclick="sjekkTemp2()">Sjekk temp</button>
+
+
+    <h1>del 3</h1>
+
+    <script>
+        function sjekkKarakter3() {
+            const poeng = document.querySelector("#karakter3").value;
+
+            if (poeng >= 90) {
+                console.log("A");
+            }
+            else if (poeng >= 80) {
+                console.log("B");
+            }
+            else if (poeng >= 70) {
+                console.log("C");
+            }
+            else if (poeng >= 60) {
+                console.log("D");
+            }
+            else if (poeng >= 50) {
+                console.log("E");
+            }
+            else {
+                console.log("F");
+            }
+        }
+    </script>
+
+    <input type="text" id="karakter3" placeholder="Hvor mange poeng?">
+    <button onclick="sjekkKarakter3()">Sjekk karakter</button>
+
+
+    <h1>del 4</h1>
+
+    <script>
+        const alder4 = 17;
+        const grense4 = 18;
+        const poeng4 = 100;
+        const maksPoeng4 = 100;
+
+        console.log("== " + (alder4 == grense4));
+        console.log("!= " + (alder4 != grense4));
+
+        console.log("> " + (alder4 > grense4));
+        console.log("< " + (alder4 < grense4));
+
+        console.log(">= " + (alder4 >= grense4));
+        console.log("<= " + (alder4 <= grense4));
+
+        console.log("== " + (poeng4 == maksPoeng4));
+        console.log("=== " + (poeng4 === maksPoeng4));
+    </script>
+
+
+    <h1>del 5</h1>
+
+    <script>
+        function sjekkBillett5() {
+            const alder = document.querySelector("#alder5").value;
+            const billett = document.querySelector("#billett5").checked;
+
+            console.log(alder + " og " + billett);
+
+            if (alder >= 16 && billett == true) {
+                console.log("Du kan gå inn");
+            }
+            else {
+                console.log("Du kan ikke gå inn");
+            }
+        }
+    </script>
+
+    <input type="text" id="alder5" placeholder="Hva er din alder?">
+    <br>
+
+    <input type="checkbox" id="billett5">
+    <label for="billett5">Har du billett?</label>
+    <br>
+
+    <button onclick="sjekkBillett5()">Sjekk Billett</button>
+
+
+    <h1>del 6</h1>
+
+    <script>
+        function sjekkTilgang6() {
+            const elever = document.querySelector("#elever6").checked;
+            const lærer = document.querySelector("#lærer6").checked;
+            const resultat = document.querySelector("#resultat6");
+
+            if (
+                elever == true && lærer == false ||
+                elever == false && lærer == true
+            ) {
+                resultat.textContent = "Du har tilgang";
+            }
+            else {
+                resultat.innerHTML = "Du har ikke tilgang";
+            }
+        }
+    </script>
+
+    <input type="checkbox" id="elever6">
+    <label for="elever6">Jeg er elev</label>
+    <br>
+
+    <input type="checkbox" id="lærer6">
+    <label for="lærer6">Jeg er lærer</label>
+    <br>
+
+    <button onclick="sjekkTilgang6()">Sjekk Tilgang</button>
+
+    <p id="resultat6"></p>
+
+
+    <h1>del 7</h1>
+
+    <script>
+        function sjekkDag7() {
+            const dag = document.querySelector("#dropdown").value;
+            const resultat = document.querySelector("#resultat7");
+
+            const ukedag = [
+                "Mandag",
+                "Tirsdag",
+                "Onsdag",
+                "Torsdag",
+                "Fredag",
+                "Lørdag",
+                "Søndag"
+            ];
+
+            resultat.innerHTML = ukedag[dag];
+        }
+    </script>
+
+    <select id="dropdown">
+        <option value="0">Mandag</option>
+        <option value="1">Tirsdag</option>
+        <option value="2">Onsdag</option>
+        <option value="3">Torsdag</option>
+        <option value="4">Fredag</option>
+        <option value="5">Lørdag</option>
+        <option value="6">Søndag</option>
+    </select>
+
+    <button onclick="sjekkDag7()">Sjekk dag</button>
+
+    <p id="resultat7"></p>
+
+
+    <h1>del 8</h1>
+
+    <script>
+        for (let i = 0; i <= 10; i++) {
+            console.log(i);
+        }
+    </script>
+
+    <p>Sjekk konsollen for å se resultatet</p>
+
+</body>
+</html>

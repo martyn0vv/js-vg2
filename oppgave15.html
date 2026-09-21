@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppgave 15 – Elevkort</title>
+</head>
+<body>
+  <section id="oppgave-15">
+    <h2>15. Lag ditt eget elevkort</h2>
+    <p>Fyll ut feltene. Vi oppretter et objekt, bruker metoden og viser resultatet på kortet.</p>
+    <form onsubmit="opprettElev(); return false;">
+      <label for="elev-navn">Navn
+        <input type="text" id="elev-navn" placeholder="Herman" required>
+      </label>
+      <label for="elev-alder">Alder
+        <input type="number" id="elev-alder" placeholder="19" min="0" step="1" required>
+      </label>
+      <label for="elev-klasse">Klasse
+        <input type="text" id="elev-klasse" placeholder="2ITA" required>
+      </label>
+      <button type="submit">Opprett elev</button>
+    </form>
+    <p id="kortstatus" role="status">Fyll ut navn, alder og klasse for å opprette kortet.</p>
+    <article id="elevkort" aria-label="Elevkort" aria-live="polite" hidden>
+      <h3>Elevkort</h3>
+      <dl>
+        <dt>Navn</dt><dd id="kort-navn"></dd>
+        <dt>Alder</dt><dd id="kort-alder"></dd>
+        <dt>Klasse</dt><dd id="kort-klasse"></dd>
+      </dl>
+      <p id="kort-presentasjon"></p>
+    </article>
+    <script>
+      // Oppgave 15: input → objekt → metode → DOM.
+      function opprettElev() {
+        const elevNavn = document.querySelector("#elev-navn").value.trim();
+        const elevAlder = Number(document.querySelector("#elev-alder").value);
+        const elevKlasse = document.querySelector("#elev-klasse").value.trim();
+        const kortstatus = document.querySelector("#kortstatus");
+
+        if (elevNavn === "" || elevKlasse === "") {
+          kortstatus.textContent = "Skriv inn både navn og klasse.";
+          return;
+        }
+
+        const nyElev = {
+          navn: elevNavn,
+          alder: elevAlder,
+          klasse: elevKlasse,
+          erElev: true,
+          presenter() {
+            return this.navn + " går i " + this.klasse + " og er " + this.alder + " år.";
+          }
+        };
+
+        document.querySelector("#kort-navn").textContent = nyElev.navn;
+        document.querySelector("#kort-alder").textContent = nyElev.alder;
+        document.querySelector("#kort-klasse").textContent = nyElev.klasse;
+        document.querySelector("#kort-presentasjon").textContent = nyElev.presenter();
+
+        const elevkort = document.querySelector("#elevkort");
+        elevkort.hidden = false;
+        elevkort.style.backgroundColor = "lightgray";
+        kortstatus.textContent = "Elevkortet er opprettet. Du kan endre feltene og opprette det på nytt.";
+
+        console.log("Oppgave 15 – ferdig elev-objekt:", nyElev);
+      }
+    </script>
+  </section>
+</body>
+</html>
